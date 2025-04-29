@@ -1,9 +1,90 @@
-Real-time Gyroscope & Accelerometer ViewerThis project provides a system for real-time visualization of gyroscope and accelerometer data transmitted from an Android device to a PC. The system supports both terminal-based viewing using Python and graphical plotting using MATLAB.Project OverviewThe system consists of an Android application that captures sensor data and transmits it via UDP, and PC-based applications (Python or MATLAB) that receive and process this data.FeaturesAndroid App:Captures real-time gyroscope and accelerometer data.Transmits data over UDP to a specified PC IP address and port.PC Applications:Python Viewer: Displays raw sensor data in the terminal.MATLAB Plotter: Visualizes gyroscope data (X, Y, Z components, and magnitude) in real-time plots.Data FormatThe Android application sends sensor data over UDP as plain text strings. Each line represents either gyroscope or accelerometer data and follows one of the formats below:GYRO,<gx>,<gy>,<gz>ACC,<ax>,<ay>,<az>Where:<gx>, <gy>, <gz> are the gyroscope readings along the X, Y, and Z axes, respectively.<ax>, <ay>, <az> are the accelerometer readings along the X, Y, and Z axes, respectively.Example Data Streams:GYRO,-0.012,0.034,0.056
-ACC,0.123,0.456,9.807
-PC Application Options1. MATLAB Script (Real-Time Plotting)This option provides real-time graphical visualization of gyroscope data.RequirementsMATLAB R2020b or newer.MATLAB UDP Receive support installed via the Add-On Explorer.Setup & RunEnsure MATLAB is installed and the UDP Receive support is added.Open the gyro_plotter.m script in MATLAB.Run the script.When prompted, enter the same UDP port number configured in the Android app (default: 5005).Real-time plots displaying the X, Y, Z gyroscope components and the overall magnitude will appear.Gyroscope Magnitude CalculationThe magnitude of the gyroscope vector is calculated using the Euclidean norm:[\text{Magnitude} = \sqrt{gx^2 + gy^2 + gz^2}]2. Python Script (Terminal Viewer)This option allows viewing the raw sensor data directly in your terminal.RequirementsPython 3.x.The socket library (typically included in standard Python distributions).Setup & RunEnsure Python 3.x is installed.Open your terminal or command prompt.Navigate to the directory containing udp_receiver.py.Run the script using the command:python udp_receiver.py
-The script will start listening for UDP data on the specified port and print received lines to the terminal.ConfigurationBoth PC applications use the following default settings, which can be modified within their respective script files:UDP Port: 5005MATLAB Sample Rate: 10 Hz (Data points per second for plotting)MATLAB Plot Duration: 30 seconds (Duration of the rolling plot window)File StructureThe project directory is organized as follows:.
+# Real-time Gyroscope & Accelerometer Viewer
+
+This project provides a system for real-time visualization of gyroscope and accelerometer data transmitted from an Android device to a PC. The system supports both terminal-based viewing using Python and graphical plotting using MATLAB.
+
+---
+
+## 📘 Project Overview
+
+The system consists of:
+- An **Android application** that captures sensor data and transmits it via **UDP**
+- **PC-based applications** (Python or MATLAB) that receive and process this data
+
+---
+
+## ✨ Features
+
+### 📱 Android App
+- Captures real-time gyroscope and accelerometer data.
+- Transmits data over UDP to a specified PC IP address and port.
+
+### 💻 PC Applications
+- **Python Viewer**: Displays raw sensor data in the terminal.
+- **MATLAB Plotter**: Visualizes gyroscope data (X, Y, Z components, and magnitude) in real-time plots.
+
+---
+
+## 🗃️ Data Format
+
+The Android application sends sensor data over UDP as plain text strings.  
+Each line represents either **gyroscope** or **accelerometer** data.
+
+### Format:
+
+Where:
+- `<gx>, <gy>, <gz>` are the gyroscope readings (X, Y, Z axes).
+- `<ax>, <ay>, <az>` are the accelerometer readings (X, Y, Z axes).
+
+### Example:
+
+---
+
+## 🖥️ PC Application Options
+
+### 1. MATLAB Script (Real-Time Plotting)
+
+Provides real-time graphical visualization of gyroscope data.
+
+#### ✅ Requirements
+- MATLAB **R2020b or newer**
+- **UDP Receive** support (install via MATLAB Add-On Explorer)
+
+#### 🛠️ Setup & Run
+1. Open MATLAB.
+2. Ensure the UDP support is installed.
+3. Open and run the `gyro_plotter.m` script.
+4. Enter the same UDP port number as configured in the Android app (default: **5005**).
+5. View real-time plots showing:
+   - Gyroscope X, Y, Z components
+   - Gyroscope magnitude
+
+#### 🧮 Gyroscope Magnitude Calculation
+\[
+\text{Magnitude} = \sqrt{gx^2 + gy^2 + gz^2}
+\]
+
+---
+
+### 2. Python Script (Terminal Viewer)
+
+Displays raw sensor data in the terminal.
+
+#### ✅ Requirements
+- Python 3.x
+- `socket` library (usually included by default)
+
+#### 🛠️ Setup & Run
+1. Open your terminal.
+2. Navigate to the folder containing `udp_receiver.py`.
+3. Run the script:
+   ```bash
+   python udp_receiver.py
+.
 ├── android_app/           # Contains Android app source code or APK
 ├── gyro_plotter.m         # MATLAB script for plotting
 ├── udp_receiver.py        # Python script for terminal viewing
 └── README.md              # Project documentation (this file)
-RequirementsComponentRequirementMATLABR2020b or newer + UDP Add-OnPythonPython 3.xAndroidAndroid 6.0 or newerAuthorAkhileshRobotics Club – IITM BS Degree ProgramLicenseThis project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+Let me know if you'd like to also generate a `LICENSE` file or include Android app build/run instructions.
