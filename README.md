@@ -85,6 +85,3 @@ Displays raw sensor data in the terminal.
 ├── udp_receiver.py        # Python script for terminal viewing
 └── README.md              # Project documentation (this file)
 
----
-
-Let me know if you'd like to also generate a `LICENSE` file or include Android app build/run instructions.
